@@ -1,0 +1,169 @@
+    :root{
+      --bg:#0b1020;--card:rgba(255,255,255,.08);
+      --text:#eaf0ff;--muted:rgba(234,240,255,.75);
+      --line:rgba(255,255,255,.14);
+      --shadow:0 12px 40px rgba(0,0,0,.35);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      color:var(--text);
+       background: url("nenhome.jpg") center / cover no-repeat fixed;
+
+        position: relative;
+        overflow-x: hidden;
+      }
+    }
+    a{color:inherit;text-decoration:none}
+    .container{width:min(1120px,92vw);margin:0 auto}
+
+    header{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter:blur(14px);
+      background:rgba(7,10,20,.55);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:14px 0;
+    }
+    .badge{
+      padding:6px 10px;border:1px solid var(--line);
+      border-radius:999px;background:rgba(255,255,255,.06);
+      font-size:13px;color:var(--muted);
+    }
+    .navlinks a{
+      padding:8px 10px;border-radius:999px;
+      color:var(--muted);
+    }
+    .navlinks a:hover{
+      background:rgba(255,255,255,.08);color:var(--text);
+    }
+
+    .panel{
+      border:1px solid var(--line);
+      background:var(--card);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+    .inner{padding:22px}
+    h1{margin:0 0 10px;font-size:clamp(26px,3vw,40px)}
+
+    
+    .teacherGrid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+    }
+    @media(max-width:980px){.teacherGrid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:520px){.teacherGrid{grid-template-columns:1fr}}
+
+    .teacherCard{
+      border:1px solid var(--line);
+      border-radius:16px;
+      overflow:hidden;
+      background:rgba(255,255,255,.06);
+    }
+    .photo{
+      aspect-ratio:4/3;
+      background:rgba(255,255,255,.05);
+      position:relative;
+    }
+    .photo img{
+      width:100%;height:100%;
+      object-fit:cover;
+    }
+    .info{padding:14px}
+    .name{margin:0;font-size:17px}
+    .meta{font-size:13px;color:var(--muted);margin:4px 0}
+    .msg{
+      margin-top:8px;
+      font-size:14px;
+      color:var(--muted);
+      line-height:1.6;
+    }
+
+    footer{
+      padding:28px 0 40px;
+      text-align:center;
+      color:var(--muted);
+    }
+        .backFloat{
+      position:fixed;
+      bottom:18px;
+      left:18px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(7,10,20,.8);
+      backdrop-filter: blur(10px);
+      color:var(--text);
+      font-weight:600;
+      z-index:999;
+    }
+    .backFloat:hover{
+      background:rgba(255,255,255,.12);
+    }
+      body::before{
+    content:"";
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(5,8,20,.65),
+      rgba(5,8,20,.85)
+    );
+    backdrop-filter: blur(8px);          /* ⭐ CHỖ LÀM MỜ */
+    -webkit-backdrop-filter: blur(8px);
+    z-index: -1;
+  }
+.welcome-popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+
+.popup-box{
+  background:url("nenhome.jpg") center/cover no-repeat;
+  color:white;
+  padding:40px;
+  border-radius:20px;
+  text-align:center;
+  max-width:450px;
+  position:relative;
+  overflow:hidden;
+}
+.popup-box::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.5);
+}
+.popup-box *{
+  position:relative;
+  z-index:2;
+}
+
+.popup-box h2{
+  margin-bottom:10px;
+}
+
+.popup-box button{
+  margin-top:15px;
+  padding:10px 20px;
+  border:none;
+  background:#9b59b6;
+  color:white;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.popup-box button:hover{
+  background:#8e44ad;
+}

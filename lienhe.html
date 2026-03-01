@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Liên hệ • 20/11</title>
+  <link rel="stylesheet" href="lienhe.css">
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="nav">
+      <div class="brand">
+        <span class="badge">🎓 20/11</span>
+        <span>Liên hệ</span>
+      </div>
+      <nav class="navlinks">
+        <a href="index.html">Trang chính</a>
+        <a href="loichuc.html">Lời chúc</a>
+        <a href="kiniem.html">Kỉ niệm</a>
+        <a href="thuvien.html">Ảnh</a>
+        <a class="active" href="lienhe.html">Liên hệ</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main class="container" style="padding:18px 0 0;">
+  <div class="panel">
+    <div class="inner">
+      <h1>📌 Liên hệ / Lời nhắn cuối</h1>
+      <p class="muted">
+      </p>
+
+      <div class="sep"></div>
+
+      <div class="grid">
+        <div class="card">
+          <h3 style="margin:0 0 6px;">Thông tin nhóm</h3>
+          <div class="muted">
+            <b>12A4 • Nhóm 3KL</b><br>
+            <div>
+            Coder: <b>Nguyễn Đăng Khoa</b><br>
+            Facebook: <a href="https://www.facebook.com/nguyen.khoa.880824" target="_blank">https://www.facebook.com/nguyen.khoa.880824</a>
+            </div>
+            <div>
+            Designer: <b>Ngô Ngọc Khải</b><br>
+            Facebook: <a href="https://www.facebook.com/ngo.ngoc.khai.2025" target="_blank">https://www.facebook.com/ngo.ngoc.khai.2025</a>
+            </div>
+            <div>
+            Scripter: <b>Lương Hoàng Gia Kiệt</b><br>
+            Facebook: <a href="https://www.facebook.com/luong.hoang.gia.kiet" target="_blank">https://www.facebook.com/luong.hoang.gia.kiet</a>
+            </div>
+            <div>
+            Scripter: <b>Lê Thị Thùy Linh</b><br>
+            Facebook: <a href="https://www.facebook.com/thyu.ln" target="_blank">https://www.facebook.com/thyu.ln</a>
+            </div>
+          </div>
+          <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn" href="index.html">⬅️ Về trang chính</a>
+            <a class="btn" href="loichuc.html">➡️ Sang trang Lời chúc</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="margin:0 0 6px;">Machine tạo lời chúc(dành cho ae yếu văn)</h3>
+
+          <label>Tên thầy/cô</label>
+          <input id="tname" placeholder="VD: Cô Lan / Thầy Minh" />
+
+          <label>Lời nhắn</label>
+          <textarea id="tmsg" placeholder="Nhập lời chúc ở đây..."></textarea>
+
+          <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+            <button class="btn" id="gen" type="button">✨ Tạo lời chúc mẫu</button>
+            <button class="btn" id="copy" type="button">📋 Copy</button>
+          </div>
+
+          <div class="muted" id="status" style="margin-top:10px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div style="margin-top:18px;border-top:1px solid var(--line);padding-top:18px;">
+      © 20/11 • Liên hệ — 12A4 • Nhóm 3KL
+    </div>
+  </footer>
+</main>
+<audio id="bgm" loop preload="auto">
+  <source src="nhaclienhe.mp3" type="audio/mpeg">
+</audio>
+<script>
+  const tname = document.getElementById("tname");
+  const tmsg = document.getElementById("tmsg");
+  const status = document.getElementById("status");
+
+  document.getElementById("gen").addEventListener("click", () => {
+    const name = (tname.value || "[Thầy/Cô]").trim();
+    tmsg.value =
+`Kính gửi ${name},
+
+Nhân ngày 20/11, chúng em xin gửi lời tri ân chân thành nhất.
+Cảm ơn ${name} đã tận tâm dạy dỗ và luôn đồng hành, động viên chúng em.
+
+Kính chúc ${name} thật nhiều sức khỏe, hạnh phúc và luôn thành công trên hành trình “trồng người”.
+
+Chúng em kính chúc!`;
+    status.textContent = "Đã tạo lời chúc mẫu. Bạn có thể sửa lại cho đúng ý rồi bấm Copy.";
+  });
+
+  document.getElementById("copy").addEventListener("click", async () => {
+    try{
+      await navigator.clipboard.writeText(tmsg.value || "");
+      status.textContent = "Đã copy vào clipboard ✅";
+    }catch(e){
+      status.textContent = "Máy bạn chặn clipboard. Hãy bôi đen đoạn chữ và Ctrl+C nha.";
+    }
+  });
+  (() => {
+  const bgm = document.getElementById("bgm");
+  if (!bgm) return;
+
+  bgm.volume = 0.3;
+
+  const tryPlay = async () => {
+    try { await bgm.play(); } catch (e) {}
+  };
+
+  const unlock = () => tryPlay();
+
+  document.addEventListener("pointerdown", unlock, { once: true });
+  document.addEventListener("touchstart", unlock, { once: true });
+  document.addEventListener("keydown", unlock, { once: true });
+})();
+function closeWelcome(){
+  document.getElementById("welcomePopup").style.display = "none";
+}
+</script>
+<div class="welcome-popup" id="welcomePopup">
+  <div class="popup-box">
+    <h2>🎉 Chào mừng bạn đến với website của KKKL!</h2>
+    <p>Chúc bạn xem vui vẻ nhé 💖</p>
+    <button onclick="closeWelcome()">Đóng</button>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thư viện ảnh • 20/11</title>
+  <link rel="stylesheet" href="thuvien.css">
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="nav">
+      <div class="brand">
+        <span class="badge">🎓 20/11</span>
+        <span>Thư viện ảnh</span>
+      </div>
+      <nav class="navlinks">
+        <a href="index.html">Trang chính</a>
+        <a href="loichuc.html">Lời chúc</a>
+        <a href="kiniem.html">Kỉ niệm</a>
+        <a class="active" href="thuvien.html">Ảnh</a>
+        <a href="lienhe.html">Liên hệ</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main class="container" style="padding:18px 0 0;">
+  <div class="panel">
+    <div class="inner">
+      <div class="topRow">
+        <div>
+          <h1 style="margin:0 0 6px;">🖼️ Thư viện ảnh 20/11</h1>
+          <div class="muted"></div>
+        </div>
+
+        <label class="btn" style="display:none;">
+          Chọn nhiều ảnh
+          <input id="many" type="file" accept="image/*" multiple />
+        </label>
+      </div>
+
+      <div class="sep"></div>
+      <div class="gallery" id="gallery">
+        <div class="ph"><img src="1.jpg" alt="1"></div>
+        <div class="ph"><img src="2.jpg" alt="2"></div>
+        <div class="ph"><img src="3.jpg" alt="3"></div>
+        <div class="ph"><img src="4.jpg" alt="4"></div>
+        <div class="ph"><img src="5.jpg" alt="5"></div>
+        <div class="ph"><img src="6.jpg" alt="6"></div>
+        <div class="ph"><img src="7.jpg" alt="7"></div>
+        <div class="ph"><img src="8.jpg" alt="8"></div>
+      </div>
+
+      <div style="margin-top:12px" class="hint">
+      </div>
+
+      <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn" href="index.html">⬅️ Về trang chính</a>
+        <a class="btn" href="lienhe.html">➡️ Sang trang Liên hệ</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div style="margin-top:18px;border-top:1px solid var(--line);padding-top:18px;">
+      © 20/11 • Thư viện ảnh — 12A4 • Nhóm 3KL
+    </div>
+  </footer>
+</main>
+<audio id="bgm" loop preload="auto">
+  <source src="nhacthuvien.mp3" type="audio/mpeg">
+</audio>
+
+
+<script>
+  const slots = Array.from(document.querySelectorAll(".ph"));
+  const many = document.getElementById("many");
+
+  function setImageToSlot(slot, file){
+    const img = slot.querySelector("img");
+    const text = slot.querySelector(".text");
+    img.src = URL.createObjectURL(file);
+    img.style.display = "block";
+    if (text) text.style.display = "none";
+  }
+
+
+  many.addEventListener("change", (e) => {
+    const files = Array.from(e.target.files || []);
+    if (!files.length) return;
+    files.slice(0, slots.length).forEach((f, i) => setImageToSlot(slots[i], f));
+  });
+
+ 
+  slots.forEach((slot) => {
+    slot.addEventListener("click", () => {
+      const input = document.createElement("input");
+      input.type = "file";
+      input.accept = "image/*";
+      input.onchange = (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (file) setImageToSlot(slot, file);
+      };
+      input.click();
+    });
+  });
+  (() => {
+  const bgm = document.getElementById("bgm");
+  if (!bgm) return;
+
+  bgm.volume = 0.3;
+
+  const tryPlay = async () => {
+    try { await bgm.play(); } catch (e) {}
+  };
+
+  const unlock = () => tryPlay();
+
+  document.addEventListener("pointerdown", unlock, { once: true });
+  document.addEventListener("touchstart", unlock, { once: true });
+  document.addEventListener("keydown", unlock, { once: true });
+})();
+function closeWelcome(){
+  document.getElementById("welcomePopup").style.display = "none";
+}
+</script>
+<div class="welcome-popup" id="welcomePopup">
+  <div class="popup-box">
+    <h2>🎉 Chào mừng bạn đến với website của KKKL!</h2>
+    <p>Chúc bạn xem vui vẻ nhé 💖</p>
+    <button onclick="closeWelcome()">Đóng</button>
+  </div>
+</div>
+</body>
+</html>
